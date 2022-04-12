@@ -1,10 +1,10 @@
 package controllers
 
 import javax.inject._
-
 import akka.actor.ActorSystem
 import play.api.mvc._
 
+import java.time.{Instant, LocalDateTime}
 import scala.concurrent.duration._
 import scala.concurrent.{ExecutionContext, Future, Promise}
 
@@ -45,5 +45,9 @@ class AsyncController @Inject()(cc: ControllerComponents, actorSystem: ActorSyst
     }(actorSystem.dispatcher) // run scheduled tasks using the actor system's dispatcher
     promise.future
   }
+
+  def clock = Action.async(Future.successful(Ok(Instant.now().toString)))
+
+  def clock_local = Action.async(Future.successful(Ok(LocalDateTime.now().toString)))
 
 }
