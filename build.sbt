@@ -1,4 +1,4 @@
-name := "play2_template"
+name := "Learning web server"
 
 version := "1.0"
 
