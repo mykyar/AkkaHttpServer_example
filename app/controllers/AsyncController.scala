@@ -41,9 +41,10 @@ class AsyncController @Inject()(cc: ControllerComponents, actorSystem: ActorSyst
   private def getFutureMessage(delayTime: FiniteDuration): Future[String] = {
     val promise: Promise[String] = Promise[String]()
     actorSystem.scheduler.scheduleOnce(delayTime) {
-      promise.success("Hello friend!")
+      promise.success(helloMessage)
     }(actorSystem.dispatcher) // run scheduled tasks using the actor system's dispatcher
     promise.future
   }
 
+  val helloMessage = "Hello friend!"
 }
