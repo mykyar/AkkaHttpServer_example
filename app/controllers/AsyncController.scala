@@ -51,4 +51,6 @@ class AsyncController @Inject()(cc: ControllerComponents, actorSystem: ActorSyst
   def clock_local = Action.async(Future.successful(Ok(LocalDateTime.now().toString)))
 
   val helloMessage = "Hello friend!"
+  def setupInterval(seconds: Int) = Action(Ok(s"yoy! You have new interval of $seconds set!"))
+
 }
